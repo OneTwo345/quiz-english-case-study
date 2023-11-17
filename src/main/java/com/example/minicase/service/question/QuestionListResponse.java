@@ -1,4 +1,4 @@
-package com.example.minicase.service;
+package com.example.minicase.service.question;
 
 import com.example.minicase.model.Word;
 import com.example.minicase.model.enums.ECategory;

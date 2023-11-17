@@ -1,7 +1,6 @@
 package com.example.minicase.controller;
 
-import com.example.minicase.model.Question;
-import com.example.minicase.service.QuestionListResponse;
+import com.example.minicase.service.question.QuestionListResponse;
 import com.example.minicase.service.QuestionService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

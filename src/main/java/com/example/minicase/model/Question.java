@@ -36,6 +36,10 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private List<QuestionWord> questionWords;
 
+    @OneToMany(mappedBy = "question")
+    private List<CustomerQuestion> customerQuestions;
+
+
 
 
 }

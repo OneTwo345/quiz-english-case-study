@@ -9,6 +9,7 @@ const originArray = [];
 let answer = "";
 const checkAnswerBtn = $(".check_button");
 let score = 0;
+let life = 5;
 
 async function loadData() {
     try {
@@ -25,7 +26,7 @@ async function loadData() {
 
 function draw() {
     let exercise = exercises[Math.floor(Math.random() * exercises.length)];
-    let englishSentence = exercise.english.split(" ");
+    let englishSentence = exercise.vietnamese.split(" ");
     let listOfWords = exercise.words.split(",");
 
     for (let i = 0; i < englishSentence.length; i++) {
@@ -102,34 +103,39 @@ function attachEventListeners() {
     }
 
     checkAnswerBtn.on("click", () => {
+        if (life == 0){
+            alert('life run out');
+            return;
+        }
         checkAnswer();
+        console.log("your life: " + life)
     });
 }
 
 function getAnswer() {
     let selectedWords = destinationArray.map((wordObject) => wordObject.word);
-    answer = selectedWords.join(" ");
+    answer = selectedWords.join("");
     console.log(answer);
 }
 
 function checkAnswer() {
-    let answer = false;
+    let flag = false;
     for (let i = 0; i < exercises.length; i++) {
-        if (answer.toString().trim() == exercises[i].vietnamese) {
-            answer = true;
+        if (answer.trim() == exercises[i].english.trim()) {
+            flag = true;
             break;
         }
     }
 
-    if (answer) {
+    if (flag) {
         score += 10;
         console.log("Correct answer!");
         console.log("Score:", score);
-        // Code để xử lý khi câu trả lời đúng
     } else {
         score -= 5;
         console.log("Incorrect answer!");
         console.log("Score:", score);
+        life--;
     }
 }
 

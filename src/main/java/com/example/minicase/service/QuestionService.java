@@ -1,15 +1,11 @@
 package com.example.minicase.service;
 
-import com.example.minicase.model.Question;
-import com.example.minicase.model.QuestionWord;
-import com.example.minicase.model.Word;
 import com.example.minicase.repository.QuestionRepository;
+import com.example.minicase.service.question.QuestionListResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor

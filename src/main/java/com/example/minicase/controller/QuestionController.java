@@ -16,4 +16,17 @@ public class QuestionController {
         return "duolingo";
     }
 
+    @GetMapping("/start")
+    public String showStartPage(Model model) {
+
+        return "start";
+    }
+
+    @GetMapping("/guess")
+    public String showGuessPage(Model model) {
+
+        return "guess";
+    }
+
+
 }
