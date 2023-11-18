@@ -10,7 +10,7 @@ let answer = "";
 const checkAnswerBtn = $(".check_button");
 let score = 0;
 let life = 5;
-
+var timeLeft = 5;
 async function loadData() {
     try {
         const result = await $.ajax({
@@ -57,6 +57,7 @@ function calibrateDestinationCursorPos(destinationArray) {
         return sum;
     }
 }
+
 
 function createOriginArray(word) {
     let wordPosition = word.getBoundingClientRect();
@@ -138,5 +139,16 @@ function checkAnswer() {
         life--;
     }
 }
+
+function countdown() {
+    timeLeft--;
+    $("#countdown").text(timeLeft);
+    if (timeLeft === 0) {
+        clearInterval(timer);
+        $("#countdown").text("Hết thời gian");
+        life--;
+    }
+}
+var timer = setInterval(countdown, 1000);
 
 loadData();

@@ -166,3 +166,20 @@ footer {
     transform: translateY(2px);
     box-shadow: none;
 }
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.timeout, .heart {
+    width: -0px;
+    text-align: center;
+}
+#countdown {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    color: orangered;
+    text-align: center;
+}

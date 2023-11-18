@@ -13,7 +13,7 @@ public class QuestionController {
     @GetMapping
     public String showListPage(Model model) {
 
-        return "duolingo";
+        return "home";
     }
 
     @GetMapping("/start")
@@ -26,6 +26,37 @@ public class QuestionController {
     public String showGuessPage(Model model) {
 
         return "guess";
+    }
+
+    @GetMapping("/daily")
+    public String showDailyPage(Model model) {
+
+        return "daily";
+    }
+    @GetMapping("/listen")
+    public String showListenPage(Model model) {
+
+        return "listen";
+    }
+    @GetMapping("/home")
+    public String showHomePage(Model model) {
+
+        return "duolingo";
+    }
+    @GetMapping("/streak")
+    public String showStreakPage(Model model) {
+
+        return "streak";
+    }
+    @GetMapping("/drunk")
+    public String showDrunkPage(Model model) {
+
+        return "drunk";
+    }
+    @GetMapping("/miss")
+    public String showMissPage(Model model) {
+
+        return "miss";
     }
 
 
