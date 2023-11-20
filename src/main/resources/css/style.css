@@ -172,7 +172,7 @@ footer {
 }
 
 .timeout, .heart {
-    width: -0px;
+    width: 0px;
     text-align: center;
 }
 #countdown {
@@ -182,4 +182,33 @@ footer {
     border-radius: 50%;
     color: orangered;
     text-align: center;
+    font-weight: bold;
+    line-height: 80px;
+}
+
+
+/* Định nghĩa CSS cho phần tử heart */
+.heart {
+    display: inline-block;
+    font-size: 24px;
+    color: red;
+}
+
+/* Định nghĩa CSS cho phần tử heart trước */
+.heart::before {
+    content: "\2665";
+    display: inline; /* Thêm thuộc tính này để heart nằm trên cùng một hàng ngang */
+}
+
+/* Định nghĩa CSS cho phần tử heart với số lượng heart là 1 */
+.heart[data-count="1"]::before {
+    content: "\2764";
+}
+
+/* Định nghĩa CSS cho phần tử heart với số lượng heart từ 2 đến 5 */
+.heart[data-count="2"]::before,
+.heart[data-count="3"]::before,
+.heart[data-count="4"]::before,
+.heart[data-count="5"]::before {
+    content: "\2764";
 }

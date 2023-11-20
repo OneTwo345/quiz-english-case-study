@@ -25,5 +25,7 @@ public class QuestionListResponse {
 
     private String words;
 
+    private String content;
+
 
 }

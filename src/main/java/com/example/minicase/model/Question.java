@@ -26,6 +26,8 @@ public class Question {
 
     private String english;
 
+    private String content;
+
     @Enumerated(EnumType.STRING)
     private EType type;
 

@@ -22,6 +22,7 @@ public class QuestionService {
                         .english(question.getEnglish())
                         .vietnamese(question.getVietnamese())
                         .type(String.valueOf(question.getType()))
+                        .content(question.getContent())
                         .words(question.getQuestionWords()
                                 .stream().map(c -> c.getWord().getName())
                                 .collect(Collectors.joining(", ")))

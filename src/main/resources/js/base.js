@@ -145,10 +145,23 @@ function countdown() {
     $("#countdown").text(timeLeft);
     if (timeLeft === 0) {
         clearInterval(timer);
-        $("#countdown").text("Hết thời gian");
+        $("#countdown").text("TIME OUT");
         life--;
     }
 }
 var timer = setInterval(countdown, 1000);
+
+$(document).ready(function() {
+    var heartElement = $(".heart");
+    var heartCount = 1;
+    var maxHeartCount = 5;
+
+    function updateHeartCount(count) {
+        heartCount = Math.max(1, Math.min(count, maxHeartCount));
+        heartElement.attr("data-count", heartCount);
+    }
+
+    updateHeartCount(3);
+});
 
 loadData();

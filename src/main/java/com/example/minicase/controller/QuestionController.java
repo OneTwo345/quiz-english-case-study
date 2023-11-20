@@ -5,15 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/quiz")
 public class QuestionController {
     @GetMapping
     public String showListPage(Model model) {
 
-        return "home";
+        return "quiz";
     }
 
     @GetMapping("/start")
@@ -41,7 +39,7 @@ public class QuestionController {
     @GetMapping("/home")
     public String showHomePage(Model model) {
 
-        return "duolingo";
+        return "home";
     }
     @GetMapping("/streak")
     public String showStreakPage(Model model) {
