@@ -6,7 +6,35 @@ body {
     align-items: center;
     height: 100vh;
 }
-
 svg {
     width: 500px;
+}
+/* CSS cho phần Game Over */
+#game-over {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    margin-top: 50px;
+}
+#game-over h1 {
+    font-size: 48px;
+    color: #FF5733; /* Màu cam đậm */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Đổ bóng cho chữ */
+    margin-bottom: 20px;
+}
+#home-button {
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Hiệu ứng hover */
+}
+#home-button:hover {
+    background-color: #45A049;
 }

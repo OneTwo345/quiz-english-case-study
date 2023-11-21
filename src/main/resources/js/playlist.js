@@ -29,21 +29,22 @@ function createTrackItem(index,name,duration){
 }
 
 var listAudio = [
-
-]
-
-async function loadData() {
-    try {
-        const result = await $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/api/questions"
-        });
-        exercises = result;
-        draw();
-    } catch (err) {
-        console.log(err.toString(), "Error - LoadListItemsHelper");
+    {
+        name:"Artist 1 - audio 1",
+        file:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+        duration:"08:47"
+    },
+    {
+        name:"Artist 2 - audio 2",
+        file:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        duration:"05:53"
+    },
+    {
+        name:"Artist 3 - audio 3",
+        file:"https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_1MG.mp3",
+        duration:"00:27"
     }
-}
+]
 
 for (var i = 0; i < listAudio.length; i++) {
     createTrackItem(i,listAudio[i].name,listAudio[i].duration);

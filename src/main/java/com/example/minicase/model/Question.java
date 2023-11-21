@@ -41,7 +41,9 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private List<CustomerQuestion> customerQuestions;
 
-
+    public Question(Long id) {
+        this.id = id;
+    }
 
 
 }

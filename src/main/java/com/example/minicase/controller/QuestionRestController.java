@@ -1,8 +1,14 @@
 package com.example.minicase.controller;
 
+import com.example.minicase.service.customer.CustomerDetailResponse;
+import com.example.minicase.service.customer.CustomerSaveReq;
+import com.example.minicase.service.question.QuestionDetailResponse;
 import com.example.minicase.service.question.QuestionListResponse;
 import com.example.minicase.service.QuestionService;
+import com.example.minicase.service.question.QuestionSaveReq;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,30 +26,21 @@ public class QuestionRestController {
         return ResponseEntity.ok(questions);
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<QuestionListResponse> getQuestionById(@PathVariable Long id) {
-//        QuestionListResponse question = questionService.findById(id);
-//        return ResponseEntity.ok(question);
-//    }
+    @PostMapping
+    public void create(@RequestBody QuestionSaveReq request) {
+        questionService.create(request);
+    }
 
-//    @PostMapping
-//    public void create(@RequestBody Question request){
-//        questionService.addQuestion(request);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public Question update(@PathVariable Long id, @RequestBody Question questionRequest) {
-//        return questionService.updateQuestion(questionRequest,id );
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> delete(@PathVariable Long id) {
-//        questionService.deleteQuestionById(id);
-//        return ResponseEntity.noContent().build();
-//    }
-//    @GetMapping("/{id}")
-//    public Question getQuestionById(@PathVariable("id") Long id) {
-//        return questionService.findById(id);
-//    }
+    @PutMapping("{id}")
+    public ResponseEntity<?> updateQuestion(@RequestBody @Valid QuestionSaveReq request, @PathVariable Long id) {
+        questionService.update(request, id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<QuestionDetailResponse> findById(@PathVariable Long id) {
+        return new ResponseEntity<>(questionService.findById(id), HttpStatus.OK);
+    }
+
 
 }

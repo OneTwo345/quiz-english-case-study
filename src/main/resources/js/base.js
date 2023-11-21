@@ -28,6 +28,23 @@ function draw() {
     let exercise = exercises[Math.floor(Math.random() * exercises.length)];
     let englishSentence = exercise.vietnamese.split(" ");
     let listOfWords = exercise.words.split(",");
+    let content = exercise.content;
+
+    // Tạo phần tử audio
+    const audioElement = document.createElement("audio");
+    audioElement.controls = true;
+
+    const sourceElement = document.createElement("source");
+    sourceElement.src = content;
+    sourceElement.type = "audio/mpeg";
+
+    audioElement.appendChild(sourceElement);
+
+    // Chèn phần tử audio vào thẻ div "audioContent"
+    const audioContentNode = document.createElement("div");
+    audioContentNode.id = "audioContent";
+    audioContentNode.appendChild(audioElement);
+    originContainer[0].appendChild(audioContentNode);
 
     for (let i = 0; i < englishSentence.length; i++) {
         const spanNode = document.createElement("span");
@@ -45,7 +62,6 @@ function draw() {
 
     attachEventListeners();
 }
-
 function calibrateDestinationCursorPos(destinationArray) {
     if (destinationArray.length === 0) {
         return destinationPosDefault.x;
@@ -114,8 +130,8 @@ function attachEventListeners() {
 }
 
 function getAnswer() {
-    let selectedWords = destinationArray.map((wordObject) => wordObject.word);
-    answer = selectedWords.join("");
+    let selectedWords = destinationArray.map((wordObject) => wordObject.word.trim());
+    answer = selectedWords.join(" ");
     console.log(answer);
 }
 
@@ -127,16 +143,31 @@ function checkAnswer() {
             break;
         }
     }
-
     if (flag) {
         score += 10;
         console.log("Correct answer!");
         console.log("Score:", score);
     } else {
-        score -= 5;
+        if (life > 0) {
+            life--;
+            heart = document.getElementById("heart")
+            heart.innerHTML =''
+            for (let i = 0; i < life ; i++){
+                heart.innerHTML += `<div class="heart">&#x2665;</div>`;
+            }
+            if (life === 0) {
+                clearInterval(timer); // Dừng bộ đếm thời gian khi hết mạng
+                $("#countdown").text("GAME OVER");
+                window.location.href = "http://localhost:8080/quiz/drunk"; // Chuyển trang khi hết mạng
+            }
+        }
+        if (score >= 5) {
+            score -= 5;
+        } else {
+            score = 0; // Điểm không bao giờ âm
+        }
         console.log("Incorrect answer!");
         console.log("Score:", score);
-        life--;
     }
 }
 
