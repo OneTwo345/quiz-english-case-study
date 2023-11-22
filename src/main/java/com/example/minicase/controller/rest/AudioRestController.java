@@ -1,4 +1,4 @@
-package com.example.minicase.controller;
+package com.example.minicase.controller.rest;
 
 import com.example.minicase.model.dto.FlaskAudioReq;
 import com.example.minicase.model.dto.FlaskAudioRes;

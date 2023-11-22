@@ -1,5 +1,6 @@
 package com.example.minicase.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +38,9 @@ public class QuestionController {
         return "listen";
     }
     @GetMapping("/home")
-    public String showHomePage(Model model) {
-
+    public String showHomePage(Model model , HttpSession session) {
+        Long id = (Long) session.getAttribute("idUser");
+        model.addAttribute("idUser",id);
         return "home";
     }
     @GetMapping("/streak")
