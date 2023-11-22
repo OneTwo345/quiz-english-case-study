@@ -129,7 +129,7 @@ footer {
     padding: 2em 5em;
 }
 
-.skip_button,
+.clear_button,
 .check_button {
     font-size: 1em;
     font-weight: 600;
@@ -139,14 +139,14 @@ footer {
     cursor: pointer;
 }
 
-.skip_button {
+.clear_button {
     color: var(--darker-grey-color);
     border: 1px solid var(--grey-color);
     background-color: white;
     box-shadow: 0px 3px 0px 0px var(--grey-color);
 }
 
-.skip_button:hover {
+.clear_button:hover {
     background-color: rgba(143, 157, 173, 0.2);
 }
 
@@ -188,27 +188,14 @@ footer {
 
 
 /* Định nghĩa CSS cho phần tử heart */
+
+.heart-container {
+    display: flex;
+}
+
+/* Định nghĩa CSS cho từng hình trái tim */
 .heart {
-    display: inline-block;
-    font-size: 24px;
+    font-size: 50px;
     color: red;
-}
-
-/* Định nghĩa CSS cho phần tử heart trước */
-.heart::before {
-    content: "\2665";
-    display: inline; /* Thêm thuộc tính này để heart nằm trên cùng một hàng ngang */
-}
-
-/* Định nghĩa CSS cho phần tử heart với số lượng heart là 1 */
-.heart[data-count="1"]::before {
-    content: "\2764";
-}
-
-/* Định nghĩa CSS cho phần tử heart với số lượng heart từ 2 đến 5 */
-.heart[data-count="2"]::before,
-.heart[data-count="3"]::before,
-.heart[data-count="4"]::before,
-.heart[data-count="5"]::before {
-    content: "\2764";
+    margin-right: 35px; /* Khoảng cách giữa các hình trái tim */
 }

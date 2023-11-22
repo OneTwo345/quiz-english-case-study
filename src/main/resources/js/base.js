@@ -5,9 +5,10 @@ const originalText = $("#original__text");
 let words = $(".word");
 let destinationPosDefault = destinationContainer.getBoundingClientRect();
 let destinationArray = [];
-const originArray = [];
+let originArray = [];
 let answer = "";
 const checkAnswerBtn = $(".check_button");
+
 let score = 0;
 let life = 5;
 var timeLeft = 5;
@@ -18,17 +19,22 @@ async function loadData() {
             url: "http://localhost:8080/api/questions"
         });
         exercises = result;
+        randomQuestion();
         draw();
     } catch (err) {
         console.log(err.toString(), "Error - LoadListItemsHelper");
     }
 }
-
+let exercise = [];
+function randomQuestion(){
+    exercise = exercises[Math.floor(Math.random() * exercises.length)];
+}
 function draw() {
-    let exercise = exercises[Math.floor(Math.random() * exercises.length)];
+
     let englishSentence = exercise.vietnamese.split(" ");
     let listOfWords = exercise.words.split(",");
-
+    originalText[0].innerHTML ='';
+    originContainer[0].innerHTML = ''
     for (let i = 0; i < englishSentence.length; i++) {
         const spanNode = document.createElement("span");
         spanNode.textContent = englishSentence[i];
@@ -59,6 +65,8 @@ function calibrateDestinationCursorPos(destinationArray) {
 }
 
 
+
+
 function createOriginArray(word) {
     let wordPosition = word.getBoundingClientRect();
     let newWordObject = Object.assign(wordPosition);
@@ -72,7 +80,8 @@ function attachEventListeners() {
     for (let i = 0; i < words.length; i++) {
         words[i].addEventListener("click", () => {
             let destinationStartPos = calibrateDestinationCursorPos(destinationArray);
-
+            console.log(originArray);
+            console.log(destinationArray)
             let yTravel =
                 originArray[i].y -
                 (destinationPosDefault.y +
@@ -119,6 +128,7 @@ function getAnswer() {
     console.log(answer);
 }
 
+
 function checkAnswer() {
     let flag = false;
     for (let i = 0; i < exercises.length; i++) {
@@ -133,12 +143,30 @@ function checkAnswer() {
         console.log("Correct answer!");
         console.log("Score:", score);
     } else {
-        score -= 5;
+        if (life > 0) {
+            life--;
+            heart = document.getElementById("heart")
+            heart.innerHTML =''
+            for (let i = 0; i < life ; i++){
+                heart.innerHTML += `<div class="heart">&#x2665;</div>`;
+            }
+            if (life === 0) {
+                clearInterval(timer); // Dừng bộ đếm thời gian khi hết mạng
+                $("#countdown").text("GAME OVER");
+                window.location.href = "http://localhost:8080/quiz/drunk"; // Chuyển trang khi hết mạng
+            }
+        }
+        if (score >= 5) {
+            score -= 5;
+        } else {
+            score = 0; // Điểm không bao giờ âm
+        }
         console.log("Incorrect answer!");
         console.log("Score:", score);
-        life--;
     }
 }
+
+
 
 function countdown() {
     timeLeft--;
@@ -147,8 +175,13 @@ function countdown() {
         clearInterval(timer);
         $("#countdown").text("TIME OUT");
         life--;
+
+        // Chuyển hướng khi hết thời gian; // Gọi hàm để chuyển sang câu hỏi mới
     }
 }
+
+
+
 var timer = setInterval(countdown, 1000);
 
 $(document).ready(function() {
@@ -163,5 +196,15 @@ $(document).ready(function() {
 
     updateHeartCount(3);
 });
+$(document).ready(function() {
+    const clearAllButton = $(".clear_button");
+
+    clearAllButton.on("click", function() {
+        draw();
+        destinationArray = []
+        originArray.forEach(e => e.location = "origin")
+    });
+});
+
 
 loadData();
