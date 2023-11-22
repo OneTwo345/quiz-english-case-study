@@ -12,9 +12,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Collection;
 import java.util.Optional;
 @Controller
 @AllArgsConstructor
@@ -27,6 +30,7 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         if (authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof UserDetails userDetails) {
             String username = userDetails.getUsername();
+
             // Tìm người dùng theo username
             Optional<User> user = userService.findByNameIgnoreCaseOrEmailIgnoreCaseOrPhone(username);
             if (user.isPresent()) {
@@ -40,10 +44,15 @@ public class HomeController {
         }
         return modelAndView;
     }
+
+
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
+
         SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
         logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+
         return "redirect:/login?logout";
     }
+
 }

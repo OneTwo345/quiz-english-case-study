@@ -6,20 +6,29 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
+
 @Getter
 @Setter
 @NoArgsConstructor
 public class UserEditRequest  implements Validator {
     private String id;
+
     private String name;
+
     private String email;
+
     private String userName;
+
     private String password;
+
     private String phone;
+
     private String dob;
+
     private UserService userService;
     @Override
     public boolean supports(Class<?> clazz) {

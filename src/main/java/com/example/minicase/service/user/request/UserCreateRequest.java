@@ -1,6 +1,5 @@
 package com.example.minicase.service.user.request;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +10,11 @@ import org.springframework.validation.Validator;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeParseException;
+
+
 @Getter
 @Setter
 @NoArgsConstructor

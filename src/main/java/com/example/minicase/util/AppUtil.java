@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 public class AppUtil {
     public static final ModelMapper mapper;
     static {
@@ -54,6 +56,7 @@ public class AppUtil {
                 }
             }
         };
+
         mapper.createTypeMap(String.class, LocalDate.class);
         mapper.addConverter(toStringDate);
         mapper.addConverter(toStringDateTime);
@@ -69,3 +72,4 @@ public class AppUtil {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 }
+

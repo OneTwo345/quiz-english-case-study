@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <title>Duolingo</title>
@@ -43,10 +43,12 @@
           </div>
           <div class="_1ALvM"></div>
           <div class="_1G4t1 _3HsQj _2OF7V" data-test="user-dropdown">
+            <input type="hidden" id="66666666" th:value="${idUser}">
             <span class="_3ROGm"><img class="_3Kp8s" src="//s3.amazonaws.com/duolingo-images/avatar/default_2/medium"></span><span></span><span class="_2Vgy6 _1k0u2 cCL9P"></span>
             <ul class="_3q7Wh OSaWc _2HujR _1ZY-H">
               <li class="_31ObI _1qBnH"><span class="_3sWvR">Create a profile</span></li>
-              <li class="_31ObI _1qBnH"><span class="_3sWvR">Sign in</span></li>
+              <li class="_31ObI _1qBnH"  id="signInButton" ><span class="_3sWvR">Sign out</span></li>
+
             </ul>
           </div>
           <div class="_2OF7V">
@@ -442,5 +444,57 @@
 <div class="ReactModalPortal">
   <!-- react-empty: 1 -->
 </div>
+
+<th:block th:fragment="modalCustomer">
+  <div class="modal fade" id="modalCustomer" tabindex="-1" aria-labelledby="showCustomerModal"
+       data-bs-dismiss="modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="showCustomerModal">Product Cart Detail</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="area-error hide">
+          </div>
+          <form id="frmCustomer" method="post">
+            <div class="col-md-12 form-group" style="text-align: center;">
+              <img src="/img/cat-1.jpg">
+            </div>
+            <div class="col-md-12 form-group">
+              <label>Full Name</label>
+              <input class="form-control" type="text" id="name">
+            </div>
+            <div class="col-md-12 form-group">
+              <label>E-mail</label>
+              <input class="form-control" type="text"  id="email">
+            </div>
+            <div class="col-md-12 form-group">
+              <label>Mobile No</label>
+              <input class="form-control" type="text"  id="phone">
+            </div>
+            <div class="col-md-12 form-group">
+              <label>Date of birth</label>
+              <input class="form-control" type="date"  id="dob">
+            </div>
+            <div class="col-md-12 form-group">
+              <label>Address </label>
+              <input class="form-control" type="text"  id="address">
+            </div>
+            <div class="col-md-12 form-group">
+              <button class="btn btn-success" type="submit" id="btn-update-customer">Update</button>
+              <button class="btn btn-warning" type="button" >Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</th:block>
+<script>
+  document.getElementById("signInButton").addEventListener("click", function() {
+    window.location.href = "http://localhost:8080/login";
+  });
+</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.example.minicase.controller;
+package com.example.minicase.controller.rest;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;

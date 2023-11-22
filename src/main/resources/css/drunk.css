@@ -15,12 +15,20 @@ svg {
     font-family: 'Arial', sans-serif;
     margin-top: 50px;
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 73a624de7207fdc99e58bc776a31956774b51887
 #game-over h1 {
     font-size: 48px;
     color: #FF5733; /* Màu cam đậm */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Đổ bóng cho chữ */
     margin-bottom: 20px;
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 73a624de7207fdc99e58bc776a31956774b51887
 #home-button {
     padding: 12px 24px;
     background-color: #4CAF50;
@@ -35,6 +43,13 @@ svg {
     cursor: pointer;
     transition: background-color 0.3s ease; /* Hiệu ứng hover */
 }
+<<<<<<< HEAD
+
+#home-button:hover {
+    background-color: #45a049;
+}
+=======
 #home-button:hover {
     background-color: #45A049;
 }
+>>>>>>> 73a624de7207fdc99e58bc776a31956774b51887

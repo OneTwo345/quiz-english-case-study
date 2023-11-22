@@ -1,4 +1,5 @@
 package com.example.minicase.service.user;
+
 import com.example.minicase.exception.ResourceNotFoundException;
 import com.example.minicase.model.User;
 import com.example.minicase.model.enums.ERole;
@@ -14,24 +15,27 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.io.File;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 @AllArgsConstructor
 @Service
 @Transactional
 public class UserService {
     private UserRepository userRepository;
+
     public Optional<User> findByNameIgnoreCaseOrEmailIgnoreCaseOrPhone(String loginName) {
         return Optional.ofNullable(userRepository.findByUsernameIgnoreCaseOrEmailIgnoreCaseOrPhoneNumber(loginName, loginName, loginName)
                 .orElseThrow(() -> new ResourceNotFoundException
                         (String.format(AppMessage.ID_NOT_FOUND, "User"))));
     }
+
+
+
     public Optional<User> findUserByUsername(String username){
         return userRepository.findUserByUsername(username);
     }
+
     public Page<UserListResponse> findAllUser(String search, Pageable pageable){
         return userRepository.searchAllByUserName(search,pageable)
                 .map(e->UserListResponse.builder()
@@ -63,7 +67,6 @@ public class UserService {
         userDB.setFullName(userEditRequest.getName());
         userDB.setPhoneNumber(userEditRequest.getPhone());
         userDB.setDob(LocalDate.parse(userEditRequest.getDob()));
-//        Xét toàn bộ combo_id ở file về null trước khi thêm lại
         userRepository.save(userDB);
     }
     public void roleAdmin(Long id){

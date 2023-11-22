@@ -13,12 +13,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+
 import java.util.*;
 @Service
 @AllArgsConstructor
 public class AuthService implements UserDetailsService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
     public void register(RegisterRequest request){
         var user = AppUtil.mapper.map(request, User.class);
         user.setRole(ERole.ROLE_USER);
@@ -49,6 +52,7 @@ public class AuthService implements UserDetailsService {
         role.add(new SimpleGrantedAuthority(user.getRole().toString()));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), role);
     }
+
     private Collection<? extends GrantedAuthority> getAuthorities(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
@@ -58,3 +62,4 @@ public class AuthService implements UserDetailsService {
         return userRepository.findUserByUsername(username);
     }
 }
+

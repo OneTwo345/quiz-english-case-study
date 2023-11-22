@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Optional;
+
+
 @AllArgsConstructor
 @Controller
 public class AuthController {
@@ -22,6 +24,7 @@ public class AuthController {
     public String showLogin(){
         return "login";
     }
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
         // create model object to store form data
@@ -62,3 +65,4 @@ public class AuthController {
         return "/403";
     }
 }
+
