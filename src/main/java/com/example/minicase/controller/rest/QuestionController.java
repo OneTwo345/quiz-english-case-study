@@ -60,6 +60,11 @@ public class QuestionController {
 
         return "miss";
     }
+    @GetMapping("/playlist")
+    public String showPlaylistPage(Model model) {
+
+        return "playlist";
+    }
 
 
 }

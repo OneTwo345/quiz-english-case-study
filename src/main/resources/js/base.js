@@ -33,8 +33,29 @@ function draw() {
 
     let englishSentence = exercise.vietnamese.split(" ");
     let listOfWords = exercise.words.split(",");
+<<<<<<< HEAD
     originalText[0].innerHTML ='';
     originContainer[0].innerHTML = ''
+=======
+    let content = exercise.content;
+
+    // Tạo phần tử audio
+    const audioElement = document.createElement("audio");
+    audioElement.controls = true;
+
+    const sourceElement = document.createElement("source");
+    sourceElement.src = content;
+    sourceElement.type = "audio/mpeg";
+
+    audioElement.appendChild(sourceElement);
+
+    // Chèn phần tử audio vào thẻ div "audioContent"
+    const audioContentNode = document.createElement("div");
+    audioContentNode.id = "audioContent";
+    audioContentNode.appendChild(audioElement);
+    originContainer[0].appendChild(audioContentNode);
+
+>>>>>>> 73a624de7207fdc99e58bc776a31956774b51887
     for (let i = 0; i < englishSentence.length; i++) {
         const spanNode = document.createElement("span");
         spanNode.textContent = englishSentence[i];
@@ -51,7 +72,6 @@ function draw() {
 
     attachEventListeners();
 }
-
 function calibrateDestinationCursorPos(destinationArray) {
     if (destinationArray.length === 0) {
         return destinationPosDefault.x;
@@ -123,8 +143,8 @@ function attachEventListeners() {
 }
 
 function getAnswer() {
-    let selectedWords = destinationArray.map((wordObject) => wordObject.word);
-    answer = selectedWords.join("");
+    let selectedWords = destinationArray.map((wordObject) => wordObject.word.trim());
+    answer = selectedWords.join(" ");
     console.log(answer);
 }
 
@@ -137,7 +157,6 @@ function checkAnswer() {
             break;
         }
     }
-
     if (flag) {
         score += 10;
         console.log("Correct answer!");
