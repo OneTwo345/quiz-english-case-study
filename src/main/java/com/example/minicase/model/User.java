@@ -29,6 +29,8 @@ public class User {
     private String phoneNumber;
     @Enumerated(value = EnumType.STRING)
     private ERole role;
+    @OneToOne
+    private Customer customer;
 }
 
 

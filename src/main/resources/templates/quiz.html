@@ -41,12 +41,53 @@
     <div id="origin__container">
     </div>
 </div>
+
+<!-- Thêm mã HTML cho modal -->
+<div class="modal">
+    <div class="modal-container" >
+        <i class="fas fa-times close-modal"></i>
+        <h3>Correct Answer!</h3>
+        <p>Your score: <span id="score"></span></p>
+
+        <div class="content">
+            <img src="https://d35aaqx5ub95lt.cloudfront.net/images/9cb1bd734855384c2de08fe80443af9f.svg">
+            <div class="progress-bar"></div>
+            <h2>You are intelligent</h2>
+            <div class="lesson-xp">
+                <p>Lesson Complete!</p>
+                <p class="text-gold">10 XP</p>
+            </div>
+            <div class="bonus-xp">
+<!--                <p>Combo Bonus!</p>-->
+<!--                <p class="text-gold">5 XP</p>-->
+            </div>
+        </div>
+        <!-- BOTTOM -->
+        <div class="bottom">
+            <button id="backHome" class="btn-review" >Back Home</button>
+            <button class="btn-continue">Continue</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
 <footer>
     <div class="clear_button">CLEAR ALL</div>
     <div class="check_button">CHECK</div>
 </footer>
 
 <script src="/js/base.js"></script>
+<script>
+   const backHome = $('#backHome');
+   backHome.on('click', () => {
+       window.location.href = "/quiz/home"
+   })
+
+</script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 <html lang="en">
 
 <head>
+    <th:block th:replace="layout"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -12,12 +13,12 @@
 <main>
 
     <div class="top">
-        <i class="fas fa-times"></i>
-        <div class="progress-bar"></div>
+<!--        <i class="fas fa-times"></i>-->
+<!--        <div class="progress-bar"></div>-->
     </div>
 
     <div class="prompt">
-        <h2>Which one of these is "the carrot"?</h2>
+        <h2 id="question"></h2>
     </div>
 
     <!-- CONTENT SECTION -->
@@ -25,9 +26,11 @@
 
     <!-- BUTTONS SECTION -->
     <div class="bottom">
-        <button class="btn-skip">Skip</button>
+<!--        <button class="btn-skip">Skip</button>-->
         <button class="btn-check">Check</button>
     </div>
+
+    <div class="result"></div>
 
 </main>
 <script src="/js/guess.js"></script>

@@ -1,6 +1,8 @@
-package com.example.minicase.controller.rest;
+package com.example.minicase.controller;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,12 +39,19 @@ public class QuestionController {
 
         return "listen";
     }
+
     @GetMapping("/home")
-    public String showHomePage(Model model , HttpSession session) {
-        Long id = (Long) session.getAttribute("idUser");
-        model.addAttribute("idUser",id);
+    public String showHomePage(Model model ) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails)principal).getUsername();
+        } else {
+            String username = principal.toString();
+        }
         return "home";
     }
+
     @GetMapping("/streak")
     public String showStreakPage(Model model) {
 

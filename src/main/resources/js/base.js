@@ -142,16 +142,25 @@ function checkAnswer() {
         score += 10;
         console.log("Correct answer!");
         console.log("Score:", score);
+        clearInterval(timer);
+        const modal = document.querySelector('.modal');
+        const modalHeading = modal.querySelector('h3');
+        const scoreElement = document.getElementById('score');
+        modalHeading.textContent = 'Correct Answer!';
+        scoreElement.textContent = score;
+        modal.style.display = 'block';
+
     } else {
+        clearInterval(timer);
         if (life > 0) {
             life--;
             heart = document.getElementById("heart")
-            heart.innerHTML =''
+            heart.innerHTML = '';
             for (let i = 0; i < life ; i++){
                 heart.innerHTML += `<div class="heart">&#x2665;</div>`;
             }
             if (life === 0) {
-                clearInterval(timer); // Dừng bộ đếm thời gian khi hết mạng
+                clearInterval(timer);
                 $("#countdown").text("GAME OVER");
                 window.location.href = "http://localhost:8080/quiz/drunk"; // Chuyển trang khi hết mạng
             }
@@ -159,12 +168,29 @@ function checkAnswer() {
         if (score >= 5) {
             score -= 5;
         } else {
-            score = 0; // Điểm không bao giờ âm
+            score = 0;
         }
         console.log("Incorrect answer!");
         console.log("Score:", score);
+
+        // Hiển thị modal sai
+        const modal = document.querySelector('.modal');
+        const modalHeading = modal.querySelector('h3');
+        const scoreElement = document.getElementById('score');
+        modalHeading.textContent = 'Incorrect Answer!';
+        scoreElement.textContent = score;
+        modal.style.display = 'block';
     }
 }
+
+// Xử lý sự kiện đóng modal
+const closeModalButton = document.querySelector('.close-modal');
+closeModalButton.addEventListener('click', function() {
+    const modal = document.querySelector('.modal');
+    modal.style.display = 'none';
+    // Khởi động lại đếm thời gian
+    timer = setInterval(countdown, 1000);
+});
 function countdown() {
     timeLeft--;
     $("#countdown").text(timeLeft);
