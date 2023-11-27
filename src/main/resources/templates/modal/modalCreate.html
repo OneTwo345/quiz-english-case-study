@@ -1,0 +1,48 @@
+<th:block th:fragment="modalCreate">
+    <div class="modal fade" id="modalCreate" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Modal create</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="area-error hide">
+
+                    </div>
+                    <form id="frmCreate" method="post">
+                        <div class="row mb-3 mt-3">
+                            <div class="col-lg-4">
+                                <label for="vietnameseCre" class="form-label">Vietnamese</label>
+                                <input type="text" class="form-control" id="vietnameseCre" name="vietnameseCre">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="englishCre" class="form-label">English</label>
+                                <input type="text" class="form-control" id="englishCre">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="contentCre" class="form-label">Audio</label>
+                                <input type="text" class="form-control" id="contentCre">
+                            </div>
+                        </div>
+                        <h3>Words</h3>
+
+                        <div class="checkbox-grid">
+                            <div class="form-check" th:each="word : ${words}">
+                                <input class="form-check-input" type="checkbox" id="wordsCre" th:value="${word.id}" onchange="toggleBold(event)">
+                                <label class="form-check-label" th:text="${word.name}"></label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success" id="btnCreate">
+                        <i class="fas fa-plus"></i>
+                        Create
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

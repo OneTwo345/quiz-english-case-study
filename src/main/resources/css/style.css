@@ -55,7 +55,7 @@ img {
 }
 span {
     display: inline-block;
-    border-bottom: 2px dashed var(--darker-grey-color);
+    /*border-bottom: 2px dashed var(--darker-grey-color);*/
     margin-right: 5px;
 }
 #destination__container {
@@ -154,6 +154,7 @@ footer {
     text-align: center;
 }
 #countdown {
+    font-size: 24px;
     display: inline-block;
     width: 80px;
     height: 80px;
@@ -162,6 +163,7 @@ footer {
     text-align: center;
     font-weight: bold;
     line-height: 80px;
+    border-bottom: 2px dashed var(--darker-grey-color);
 }
 /* Định nghĩa CSS cho phần tử heart */
 .heart-container {
@@ -369,3 +371,21 @@ main {
     top: 20px;
     cursor: pointer;
 }
+
+#score-container {
+    position: absolute;
+    left: 80px;
+    top: 80px;
+    color: #333;
+    font-size: 24px;
+    padding: 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 2px solid #ccc;
+    border-color: green;
+}
+#score-point{
+color: #58cc02;
+    font-size: 30px;
+}
+

@@ -1,4 +1,6 @@
 package com.example.minicase.util;
+import com.example.minicase.model.Word;
+import com.example.minicase.service.word.WordSaveRequest;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
@@ -71,5 +73,7 @@ public class AppUtil {
         }
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
+
 }
 

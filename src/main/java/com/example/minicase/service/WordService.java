@@ -1,8 +1,11 @@
 package com.example.minicase.service;
 
+import com.example.minicase.model.Question;
+import com.example.minicase.model.Word;
 import com.example.minicase.repository.WordRepository;
-import com.example.minicase.service.question.QuestionListResponse;
 import com.example.minicase.service.word.WordLisResponse;
+import com.example.minicase.service.word.WordSaveRequest;
+import com.example.minicase.util.AppUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,13 @@ public class WordService {
                         .name(word.getName())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    public void create(WordSaveRequest request) {
+        String name = request.getName();
+        Word newWord = new Word();
+        newWord.setName(name);
+        wordRepository.save(newWord);
     }
 
 }

@@ -1,0 +1,49 @@
+<th:block th:fragment="modalUpdate">
+    <div class="modal fade" id="modalUpdate" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Modal update</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="area-error hide">
+
+                    </div>
+                    <form id="frmUpdate">
+                        <div class="row mb-3 mt-3">
+                            <div class="col-lg-4">
+                                <label for="vietnameseUp" class="form-label">Vietnamese</label>
+                                <input type="text" class="form-control" id="vietnameseUp" name="vietnameseUp">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="englishUp" class="form-label">English</label>
+                                <input type="text" class="form-control" id="englishUp">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="contentUp" class="form-label">Audio</label>
+                                <input type="text" class="form-control" id="contentUp">
+                            </div>
+                        </div>
+                        <h3>Words</h3>
+
+                        <div class="checkbox-grid">
+                            <div class="form-check" th:each="word : ${words}">
+                                <input class="form-check-input" id="wordsUp" type="checkbox" name="selectedWords"
+                                       th:value="${word.id}" onchange="toggleBold(event)">
+                                <label class="form-check-label" th:text="${word.name}"></label>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-secondary" id="btnUpdate">
+                            <i class="fas fa-pencil"></i>
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

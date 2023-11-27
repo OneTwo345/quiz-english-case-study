@@ -1,5 +1,7 @@
 package com.example.minicase.controller.rest;
 
+import com.example.minicase.model.User;
+import com.example.minicase.model.dto.CustomerHeartScoreDTO;
 import com.example.minicase.service.user.UserService;
 import com.example.minicase.service.user.request.UserCreateRequest;
 import com.example.minicase.service.user.request.UserEditRequest;
@@ -11,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -60,4 +64,39 @@ public class UserRestController {
         userService.update(userEditRequest, id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/current")
+     public ResponseEntity<?> getCurrentUser() {
+        Optional<User> user = userService.getCurrentCustomer();
+
+        CustomerHeartScoreDTO customerHeartScoreDTO = new CustomerHeartScoreDTO();
+        customerHeartScoreDTO.setHeart(user.get().getCustomer().getHeart());
+        customerHeartScoreDTO.setScore(user.get().getCustomer().getScore());
+        customerHeartScoreDTO.setId(user.get().getCustomer().getId());
+        customerHeartScoreDTO.setName(user.get().getCustomer().getName());
+
+//        System.out.println(user.get().toString());
+//        return ResponseEntity.ok(user.get());
+        return new ResponseEntity<>(customerHeartScoreDTO, HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateHeart/{id}")
+    public ResponseEntity<?> updateHeartLife(@RequestBody CustomerHeartScoreDTO customerHeartScoreDTO,@PathVariable Long id) {
+
+        userService.updateHeart(customerHeartScoreDTO.getHeart(),id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateScore/{id}")
+    public ResponseEntity<?> updateScore(@RequestBody CustomerHeartScoreDTO customerHeartScoreDTO,@PathVariable Long id) {
+
+        userService.updateScore(customerHeartScoreDTO.getScore(),id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PatchMapping("/updateHeartAndScore/{id}")
+    public ResponseEntity<?> updateHeartAndScore(@RequestBody CustomerHeartScoreDTO customerHeartScoreDTO,@PathVariable Long id) {
+
+        userService.updateHeartAndScore(customerHeartScoreDTO.getHeart(), customerHeartScoreDTO.getScore(),id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

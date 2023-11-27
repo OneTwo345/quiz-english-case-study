@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <th:block th:replace="layout"/>
@@ -16,20 +16,19 @@
 </head>
 
 <body>
+<div id="score-container">SCORE: <span id="score-point"></span></div>
 
 <div class="wrapper">
     <div class="container">
         <div class="heart-container" id="heart">
-            <div class="heart">&#x2665;</div>
-            <div class="heart">&#x2665;</div>
-            <div class="heart">&#x2665;</div>
-            <div class="heart">&#x2665;</div>
-            <div class="heart">&#x2665;</div>
         </div>
-        <div class="timeout"> <span id="countdown"></span></div>
+        <div>
+            <div class="timeout"> <span id="countdown"></span></div>
+        </div>
     </div>
-    <h1>Write this in English</h1>
+    <h1 >Write this in English</h1>
     <div id="audio-container"></div>
+
     <div class="top__container">
         <div class="image_text__container">
             <img src="/image/duo.svg" alt="duo">
@@ -65,7 +64,7 @@
         <!-- BOTTOM -->
         <div class="bottom">
             <button id="backHome" class="btn-review" >Back Home</button>
-            <button class="btn-continue">Continue</button>
+            <button id="continue" class="btn-continue">Continue</button>
         </div>
 
     </div>
@@ -83,9 +82,15 @@
 <script src="/js/base.js"></script>
 <script>
    const backHome = $('#backHome');
+   const continue2 = $('#continue');
    backHome.on('click', () => {
        window.location.href = "/quiz/home"
-   })
+   });
+
+
+   continue2.on('click', () => {
+       getNewQuestion();
+   });
 
 </script>
 </body>

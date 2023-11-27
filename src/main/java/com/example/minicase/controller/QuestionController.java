@@ -1,20 +1,28 @@
 package com.example.minicase.controller;
 
+import com.example.minicase.service.user.UserService;
 import jakarta.servlet.http.HttpSession;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/quiz")
 public class QuestionController {
+    private final UserService userService;
     @GetMapping
-    public String showListPage(Model model) {
-
-        return "quiz";
+    public ModelAndView showQuizPage() {
+        ModelAndView view = new ModelAndView("quiz");
+        view.addObject("customer", userService.getCurrentCustomer().get());
+        return view;
     }
 
     @GetMapping("/start")
@@ -40,17 +48,14 @@ public class QuestionController {
         return "listen";
     }
 
-    @GetMapping("/home")
-    public String showHomePage(Model model ) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails)principal).getUsername();
-        } else {
-            String username = principal.toString();
-        }
-        return "home";
+    @GetMapping("/home")
+    public ModelAndView showHomePage() {
+        ModelAndView view =  new ModelAndView("home");
+        view.addObject("customer", userService.getCurrentCustomer().get());
+        return view;
     }
+
 
     @GetMapping("/streak")
     public String showStreakPage(Model model) {

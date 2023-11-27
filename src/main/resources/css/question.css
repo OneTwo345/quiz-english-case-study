@@ -1,0 +1,23 @@
+.btn-custom {
+    background-color: #4caf50;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: #66bb6a;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+.bold-label {
+    font-weight: bold;
+    color: black;
+}
+
+.hide {
+    display: none;
+}

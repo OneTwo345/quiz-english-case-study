@@ -1,4 +1,5 @@
 package com.example.minicase.service.user.response;
+import com.example.minicase.model.Customer;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,8 @@ public class UserListResponse implements Validator {
     private String phone;
     private String dob;
     private String role;
+    private Integer customerScore;
+    private Integer customerHeart;
     @Override
     public boolean supports(Class<?> clazz) {
         return false;

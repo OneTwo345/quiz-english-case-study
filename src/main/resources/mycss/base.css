@@ -1,0 +1,74 @@
+.error {
+    color: red;
+    padding: 3px;
+    display: none;
+}
+
+.input-custom:invalid[focused="true"]~span {
+    display: block;
+}
+th#price-check:hover {
+    cursor: pointer;
+}
+.alertify-notifier {
+    position: fixed;
+    top: 0;
+    right: 10px;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 9999; /* Đảm bảo nó nằm trên cùng */
+}
+.select-selection {
+    border-radius: 0 !important;
+}
+/* CSS cho hình ảnh trước khi tải lên */
+#poster-preview {
+    max-width: 200px; /* Điều chỉnh kích thước tối đa của hình ảnh */
+    height: auto;
+    margin-top: 10px;
+}
+
+.slide-image-preview {
+    max-width: 100px; /* Điều chỉnh kích thước tối đa của hình ảnh slide */
+    height: auto;
+    margin-right: 10px;
+}
+.input-custom:invalid[focused="true"]~span {
+    display: block;
+}
+.input-custom:invalid[focused="true"] {
+    border-color: red !important;
+}
+
+
+.LOCK {
+    background: aquamarine;
+    border: aquamarine;
+    font-weight: bold;
+}
+
+.UNLOCK {
+    background: darkslateblue;
+    border: darkslateblue;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.avatar-preview{
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    margin-right: 1em;
+}
+.avatar-away{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 1em;
+}
+.avatar-previews{
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 1em;
+}

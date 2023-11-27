@@ -1,17 +1,18 @@
-let userID = $('#userID')
-
-page.elements.btnCustomer.on('click', function () {
-    page.commands.renderCustomer();
+let userID = $('#userID').val();
+const btnUser = $('#btnUser');
+btnUser.on('click',async function () {
+    await renderCustomer();
 })
-page.commands.renderCustomer = () => {
-    $.ajax({
-        url: page.url.getCustomerById + customerID
+async  function renderCustomer()  {
+    await $.ajax({
+        url: "http://localhost:8080/quiz/",
+        method: "GET"
     })
-        .done(async (data) => {
-            page.elements.fullNameUser.val(data.fullName);
-            page.elements.emailUser.val(data.email);
-            page.elements.nameUser.val(data.username);
-            page.elements.phoneUser.val(data.phoneNumber);
+        .done( (data) => {
+            console.log(data)
+            $('#fullName').val(data.fullName);
+            $('#email').val(data.email);
+            $('#phoneNumber').val(data.phoneNumber);
         })
-    page.elements.modalCustomer.modal('show');
+    $('#modalCustomer').modal('show');
 }

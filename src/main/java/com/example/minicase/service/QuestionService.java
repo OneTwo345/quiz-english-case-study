@@ -43,6 +43,13 @@ public class QuestionService {
     public void create (QuestionSaveReq request){
         var question = AppUtil.mapper.map(request, Question.class);
         questionRepository.save(question);
+
+        Question question1 = question;
+        questionWordRepository.saveAll(request
+                .getWordIds()
+                .stream()
+                .map(id -> new QuestionWord(question1, new Word(Long.valueOf(id))))
+                .collect(Collectors.toList()));
     }
 
     @Transactional
@@ -68,10 +75,5 @@ public class QuestionService {
                 .collect(Collectors.toList()));
         return result;
     }
-
-
-
-
-
 
 }

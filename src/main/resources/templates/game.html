@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<th:block th:replace="~{layout.html :: header}"></th:block>-->
+<div class="container">
+    <button style="background-color: #ea9797; color: beige" type="button" class="btn  mt-4 " data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="create">
+        Create Package
+    </button>
+    <div class="input-group">
+        <label for="priceRange"></label><select class="form-control" id="priceRange">
+        <option value="0-50000000000" selected>----Choose----</option>
+        <option value="0-1000000">Dưới 1.000.000 đồng</option>
+        <option value="1000000-5000000">Từ 1.000.000 đến 5.000.000 đồng</option>
+    </select>
+
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 800px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="comboForm">
+                        <div class="row">
+                            <div id="formBody">
+
+                            </div>
+                            <div>
+                                <div>Poster</div>
+                                <label id="poster" for="post">
+                                    <input id="post" class="d-none" type="file"   onchange="previewPoster(event)">
+
+                                </label>
+                            </div>
+                            <div>
+                                <div>Image</div>
+                                <label id="images" for="file">
+                                    <input id="file" class="d-none" type="file" multiple="multiple"  onchange="previewImage(event)">
+                                </label>
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="products">Products</label>
+                                <select style="width: 100%!important; padding: .375rem .75rem!important;"
+                                        class="js-example-basic-multiple form-control" id="products" name="products"
+                                        multiple="multiple">
+                                    <option th:each="product : ${products}" th:value="${product.value}"
+                                            th:text="${product.name}"/>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="save">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <h5 class="card-header">Table Basic</h5>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>No</th>
+                <th style="width: 250px">Title</th>
+
+                <th id="price-check" class="arrow arrow-up" style="width: 100px">
+                    <span >Price &#9660;</span>
+                </th>
+                <th>Products</th>
+                <th>Poster</th>
+                <th>Action</th>
+            </tr>
+            <tbody id="tBody">
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <nav aria-label="...">
+                <ul class="pagination" id="pagination">
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="~{layout.html :: footer}"></th:block>
+<script src="/myjs/combo.js"></script>
+<script>
+    var eMenubar = document.getElementsByClassName("menu-item");
+    for (var i = 0; i < eMenubar.length; i++) {
+        eMenubar[i].classList.remove("active");
+    }
+    document.getElementById("menu-combo").classList.add("active");
+</script>
+
+</html>

@@ -31,6 +31,21 @@ public class User {
     private ERole role;
     @OneToOne
     private Customer customer;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", dob=" + dob +
+                ", email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", role=" + role +
+                ", customer=" + customer +
+                '}';
+    }
 }
 
 

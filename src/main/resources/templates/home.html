@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <title>Duolingo</title>
-  <meta content="width=device-width,initial-scale=1,user-scalable=no" name="viewport">
-  <meta content="yes" name="apple-mobile-web-app-capable">
-  <meta content="black" name="apple-mobile-web-app-status-bar-style">
-  <meta content="Duolingo" name="apple-mobile-web-app-title">
-  <meta content="notranslate" name="google">
-  <meta content="yes" name="mobile-web-app-capable">
-  <link href="//d35aaqx5ub95lt.cloudfront.net/images/duolingo-touch-icon.png" rel="apple-touch-icon">
-  <link href="//d35aaqx5ub95lt.cloudfront.net/favicon.ico" rel="shortcut icon" type="image/x-icon">
-  <link href="//d35aaqx5ub95lt.cloudfront.net/css/ltr-6a8f5d2e.css" rel="stylesheet">
-  <link href="/gcm/manifest.json" rel="manifest">
-  <link rel="stylesheet" href="/css/daily.css">
+<meta charset="utf-8">
+<title>Duolingo</title>
+<meta content="width=device-width,initial-scale=1,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="Duolingo" name="apple-mobile-web-app-title">
+<meta content="notranslate" name="google">
+<meta content="yes" name="mobile-web-app-capable">
+<link href="//d35aaqx5ub95lt.cloudfront.net/css/ltr-6a8f5d2e.css" rel="stylesheet">
+<link href="/gcm/manifest.json" rel="manifest">
+<link rel="stylesheet" href="/css/daily.css">
 </head>
 <body>
 <div id="root">
@@ -43,16 +41,16 @@
           </div>
           <div class="_1ALvM"></div>
           <div class="_1G4t1 _3HsQj _2OF7V" data-test="user-dropdown">
-            <input type="hidden" id="66666666" th:value="${idUser}">
+            <input type="hidden" id="userID" th:value="${customer.id}">
             <span class="_3ROGm"><img class="_3Kp8s" src="//s3.amazonaws.com/duolingo-images/avatar/default_2/medium"></span><span></span><span class="_2Vgy6 _1k0u2 cCL9P"></span>
             <ul class="_3q7Wh OSaWc _2HujR _1ZY-H">
-              <li class="_31ObI _1qBnH"><span class="_3sWvR">Create a profile</span></li>
+              <li class="_31ObI _1qBnH"><span class="_3sWvR" th:text="${customer.customer.name}"></span></li>
               <li class="_31ObI _1qBnH"  id="signInButton" ><span class="_3sWvR">Sign out</span></li>
 
             </ul>
           </div>
           <div class="_2OF7V">
-            <span class="vpn75 _1AthD B1eV7 _1lig4 _3IS_q mDOw-" data-test="edit-account-button">My profile</span>
+            <span id="btnUser" class="vpn75 _1AthD B1eV7 _1lig4 _3IS_q mDOw-" data-test="edit-account-button">My profile</span>
           </div>
         </div><a class="NJXKT _1nAJB cCL9P _2s5Eb" data-test="topbar-logo" href="/"></a>
         <div class="_3I8Kk"></div>
@@ -123,7 +121,7 @@
                     </li>
                     <li class="_1A-Bp _2kpKa">or</li>
                     <li class="_2kpKa">
-                      <a class="W1dac" data-test="green skill-tree-link" href="/playlist"><span class="_1z_vo _3hKMG _1na3J"><span class="vZcYH _3noOL _3muof _9l65a _3aw24"></span></span><span class="_3qO9M _33VdW _2slrg _1nOmH"><!-- react-text: 123 -->Placement test<!-- /react-text --></span></a>
+                      <a class="W1dac" data-test="green skill-tree-link" href="/quiz/guess"><span class="_1z_vo _3hKMG _1na3J"><span class="vZcYH _3noOL _3muof _9l65a _3aw24"></span></span><span class="_3qO9M _33VdW _2slrg _1nOmH"><!-- react-text: 123 -->Placement test<!-- /react-text --></span></a>
                     </li>
                   </ul>
                 </div>
@@ -459,7 +457,6 @@
           </div>
           <form id="frmCustomer" method="post">
             <div class="col-md-12 form-group" style="text-align: center;">
-              <img src="/img/cat-1.jpg">
             </div>
             <div class="col-md-12 form-group">
               <label>Full Name</label>
@@ -491,6 +488,8 @@
     </div>
   </div>
 </th:block>
+<th:block th:replace="~{modalCustomer}"></th:block>
+<script src="/js/home.js"></script>
 <script>
   document.getElementById("signInButton").addEventListener("click", function() {
     window.location.href = "http://localhost:8080/login";
