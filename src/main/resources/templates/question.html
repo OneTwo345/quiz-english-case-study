@@ -32,10 +32,11 @@
                 <div class="container-fluid">
                     <a class="navbar-brand">List of questions</a>
                     <div class="d-flex" style="gap: 10px;">
-                        <button class="btn btn-outline-light" type="button">
-                            <i class="fas fa-history"></i>
-                            Transfer histories
-                        </button>
+<!--                        <button class="btn btn-outline-light" type="button"-->
+<!--                            data-bs-target="#modalWord">-->
+<!--                            <i class="fas fa-plus-square"></i>-->
+<!--                            Create Word-->
+<!--                        </button>-->
                         <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
                                 data-bs-target="#modalCreate">
                             <i class="far fa-plus-square"></i>
@@ -82,6 +83,25 @@
         </div>
     </div>
 </div>
+
+<button class="btn btn-outline-light" type="button" id="createWordBtn">
+    <i class="fas fa-plus-square"></i>
+    Create Word
+</button>
+
+<div class="modal" id="modalWord">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal Word</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Nội dung của modal word -->
+            </div>
+        </div>
+    </div>
+</div>
 <script src="/js/question.js"></script>
 <script>
     function toggleBold(event) {
@@ -96,6 +116,7 @@
         });
     }
 </script>
+
 </body>
 
 </html>

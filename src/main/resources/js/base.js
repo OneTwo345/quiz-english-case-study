@@ -60,26 +60,14 @@ function drawScore(score) {
     $('#score-point').text(user.score);
 }
 
-// async function getNewQuestion() {
-//     try {
-//         randomQuestion();
-//         draw();
-//         drawAudio();
-//         const modal = document.querySelector('.modal');
-//         modal.style.display = 'none';
-//         timeLeft = 60;
-//         $("#score").text(score);
-//         $("#countdown").text(timeLeft);
-//     } catch (err) {
-//         console.log(err.toString(), "Error - getNewQuestion");
-//     }
-// }
+
 
 
 let exercise = [];
 
 function randomQuestion() {
     exercise = exercises[Math.floor(Math.random() * exercises.length)];
+    // exercise = exercises[15]
 }
 
 function drawAudio() {
@@ -275,9 +263,9 @@ async function checkAnswer() {
         }
         if (user.heart > 0) {
             user.heart--;
-            user.score -= 20;
+            user.score -= 5;
             updateHeartAndScore(user.heart, user.score)
-            if (user.score <= 20) {
+            if (user.score <= 5) {
                 user.score = 0;
                 updateUserScore(0)
             }
@@ -335,9 +323,17 @@ async function countdown() {
     if (timeLeft === 0) {
         clearInterval(timer);
         $("#countdown").text("OOPS");
-        user.score >= 20 ? user.score -= 20 : 0;
+        user.score >= 5 ? user.score -= 5 : 0;
         user.heart--;
         updateHeartAndScore(user.heart, user.score)
+
+        // Hiển thị modal sai
+        const modal = document.querySelector('.modal');
+        const modalHeading = modal.querySelector('h3');
+        const scoreElement = document.getElementById('score');
+        modalHeading.textContent = 'Time Out!';
+        scoreElement.textContent = user.score;
+        modal.style.display = 'block';
     }
 }
 

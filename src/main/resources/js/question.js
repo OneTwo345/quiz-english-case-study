@@ -11,6 +11,7 @@ const page = {
     commands: {}
 }
 
+
 page.elements.modalCreate = $('#modalCreate');
 page.elements.frmCreate = $('#frmCreate');
 page.elements.vietnameseCre = $('#vietnameseCre');
@@ -35,6 +36,7 @@ page.elements.questionUpdateId = $('#questionUpdateId');
 page.elements.toastLive = $('#liveToast')
 page.elements.toastBody = $('#toast-body')
 page.elements.btnCloseToast = $('#btnCloseToast')
+
 
 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(page.elements.toastLive)
 
