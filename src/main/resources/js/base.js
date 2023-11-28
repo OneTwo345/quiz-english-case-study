@@ -9,7 +9,7 @@ let destinationArray = [];
 let originArray = [];
 let answer = "";
 const checkAnswerBtn = $(".check_button");
-var timeLeft = 60;
+var timeLeft = 10;
 var user;
 
 
@@ -162,8 +162,12 @@ function attachEventListeners() {
     checkAnswerBtn.on("click", async () => {
         user = await getUser();
         if (user.heart == 0) {
-            alert('life run out');
-            return;
+            const modal = document.querySelector('.modal');
+            const modalHeading = modal.querySelector('h3');
+            const scoreElement = document.getElementById('score');
+            modalHeading.textContent = "You don't have any heart!";
+            scoreElement.textContent = user.score;
+            modal.style.display = 'block';
         }
         checkAnswer();
         console.log("your life: " + user.heart)
@@ -213,7 +217,7 @@ function updateUserScore(score) {
 
         })
         .fail(function (err) {
-            alert("Lỗi score");
+
         });
 }
 
@@ -306,7 +310,6 @@ function updateHeartAndScore(heart, score) {
 
         })
         .fail(function (err) {
-            alert("Lỗi score");
         });
 }
 
